@@ -31,6 +31,30 @@ int expectedValue=1;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
+TEST(StringCalculator,Add_passedtwocommadelimednumbers){
+//arrange
+string input = "1,5";
+int expectedValue=6;
+  //Act
+  int actualValue=Add(input);
+  //Assert
+  ASSERT_EQ(actualValue,expectedValue);
+}
+
+TEST(StringCalculator,Add_passedmultipledelimednumbers){
+//arrange
+string input = "1,5,2";
+int expectedValue=8;
+  //Act
+  int actualValue=Add(input);
+  //Assert
+  ASSERT_EQ(actualValue,expectedValue);
+}
+
+
+
+
+
 
 
 
