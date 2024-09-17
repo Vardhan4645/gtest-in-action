@@ -88,7 +88,7 @@ int expectedValue=3;
   //Act
   int actualValue=Add(input);
   //Assert
-  ASSERT_THROW(actualValue,ignores1000);
+  ASSERT_THROW(actualValue,ignores_1000);
 }
 
 
