@@ -81,14 +81,14 @@ int expectedValue=7;
   ASSERT_THROW(actualValue,invalid_argument);
 }
 
-TEST(StringCalculator,whennegativenumbersaregreaterthan1000){
+TEST(StringCalculator,numbersaregreaterthan1000){
 //arrange
 string input = "3,-4,-8,1000";
 int expectedValue=3;
   //Act
   int actualValue=Add(input);
   //Assert
-  ASSERT_THROW(actualValue);
+  ASSERT_EQ(actualValue,expectedValue);
 }
 
 
