@@ -31,7 +31,7 @@ int expectedValue=1;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
-TEST(StringCalculator,Add_passedtwocommadelimednumbers){
+TEST(StringCalculator,Add_passedtwocommadelimednumbers_sumisexpected){
 //arrange
 string input = "1,5";
 int expectedValue=6;
@@ -41,10 +41,30 @@ int expectedValue=6;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
-TEST(StringCalculator,Add_passedmultipledelimednumbers){
+TEST(StringCalculator,Add_passedmultipledelimednumbers_sumisexpected){
 //arrange
 string input = "1,5,2";
 int expectedValue=8;
+  //Act
+  int actualValue=Add(input);
+  //Assert
+  ASSERT_EQ(actualValue,expectedValue);
+}
+
+TEST(StringCalculator,Add_whendelimedwithnewlineandcomma_sumisexpected){
+//arrange
+string input = "4/n,7,8";
+int expectedValue=19;
+  //Act
+  int actualValue=Add(input);
+  //Assert
+  ASSERT_EQ(actualValue,expectedValue);
+}
+
+TEST(StringCalculator,Add_whenpassedadelimed_sumisexpected){
+//arrange
+string input = "4/n,//n,6;,8";
+int expectedValue=18;
   //Act
   int actualValue=Add(input);
   //Assert
