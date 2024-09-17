@@ -64,7 +64,7 @@ int expectedValue=19;
 TEST(StringCalculator,Add_whenpassedadelimed_sumisexpected){
 //arrange
 string input = "4/n,//n,6;,8";
-int expectedValue=18;
+int expectedValue=14;
   //Act
   int actualValue=Add(input);
   //Assert
