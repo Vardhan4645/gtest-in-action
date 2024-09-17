@@ -6,6 +6,6 @@ TEST(stringCalculator,add_empty(InputString_ZeroIsExpected){
 string input="";
 int expectedValue=0;
 //Act
-int actualvalue=Add(input);
+int actualValue=Add(input);
 //Assert
-ASSERT_EQ(actualvalue,expectedValue);
+ASSERT_EQ(actualalue,expectedValue);
