@@ -21,7 +21,7 @@ int expectedValue=0;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
-TEST(StringCalculator,Add_oneispassed_oneIsExpected){
+TEST(StringCalculator,oneispassed_oneIsExpected){
 //arrange
 string input = "1";
 int expectedValue=1;
@@ -31,7 +31,7 @@ int expectedValue=1;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
-TEST(StringCalculator,Add_passedtwocommadelimednumbers_sumisexpected){
+TEST(StringCalculator,passedtwocommadelimednumbers){
 //arrange
 string input = "1,5";
 int expectedValue=6;
@@ -41,7 +41,7 @@ int expectedValue=6;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
-TEST(StringCalculator,Add_passedmultipledelimednumbers_sumisexpected){
+TEST(StringCalculator,passedmultipledelimednumbers){
 //arrange
 string input = "1,5,2";
 int expectedValue=8;
@@ -51,7 +51,7 @@ int expectedValue=8;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
-TEST(StringCalculator,Add_whendelimedwithnewlineandcomma_sumisexpected){
+TEST(StringCalculator,whendelimedwithnewlineandcomma){
 //arrange
 string input = "4/n,7,8";
 int expectedValue=19;
@@ -61,15 +61,37 @@ int expectedValue=19;
   ASSERT_EQ(actualValue,expectedValue);
 }
 
-TEST(StringCalculator,Add_whenpassedadelimed_sumisexpected){
+TEST(StringCalculator,whenpassedadelimed){
 //arrange
 string input = "4/n,//n,6;,8";
-int expectedValue=14;
+int expectedValue=18;
   //Act
   int actualValue=Add(input);
   //Assert
   ASSERT_EQ(actualValue,expectedValue);
 }
+
+TEST(StringCalculator,whennegativenumbersarepassed){
+//arrange
+string input = "3,-4,-8,4";
+int expectedValue=7;
+  //Act
+  int actualValue=Add(input);
+  //Assert
+  ASSERT_THROW(actualValue,invalid_argument);
+}
+
+TEST(StringCalculator,whennegativenumbersaregreaterthan1000){
+//arrange
+string input = "3,-4,-8,1000";
+int expectedValue=3;
+  //Act
+  int actualValue=Add(input);
+  //Assert
+  ASSERT_THROW(actualValue,ignores1000);
+}
+
+
 
 
 
