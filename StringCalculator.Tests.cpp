@@ -1,7 +1,7 @@
-#include "stringCalculator.h"
+#include "StringCalculator.h"
 #include <gtest/gtest.h>
 
-TEST(stringCalculator,add_empty(InputString_ZeroIsExpected){
+TEST(StringCalculator,add_empty(InputString_ZeroIsExpected){
 //arrange
 string input="";
 int expectedValue=0;
