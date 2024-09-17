@@ -75,10 +75,8 @@ TEST(StringCalculator,whennegativenumbersarepassed){
 //arrange
 string input = "3,-4,-8,4";
 int expectedValue=7;
-  //Act
-  int actualValue=Add(input);
   //Assert
-  ASSERT_THROW(actualValue,invalid_argument);
+ASSERT_THROW(Add(input),invalid_argument);
 }
 
 TEST(StringCalculator,numbersaregreaterthan1000){
