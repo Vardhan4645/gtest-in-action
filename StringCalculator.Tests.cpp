@@ -8,4 +8,4 @@ int expectedValue=0;
 //Act
 int actualValue=Add(input);
 //Assert
-ASSERT_EQ(actualalue,expectedValue);
+ASSERT_EQ(actualValue,expectedValue);
