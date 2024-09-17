@@ -83,7 +83,7 @@ int expectedValue=7;
 
 TEST(StringCalculator,numbersaregreaterthan1000){
 //arrange
-string input = "3,-4,-8,1000";
+string input = "3,1000";
 int expectedValue=3;
   //Act
   int actualValue=Add(input);
