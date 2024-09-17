@@ -1,9 +1,8 @@
-#include<string>
-#include<vector>
-#include<regex>
-#include<numeric>
+#include<string.h>
+#include <vector>
+#include <numeric>
+#include <regex>
 
-using namsepace std;
-
-//int Add(const char* input)
-int Add(const string & input)
+using namespace std;
+//int Add(const char* input);
+int Add(const string &input);
