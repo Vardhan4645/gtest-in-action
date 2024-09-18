@@ -1,100 +1,55 @@
 #include "StringCalculator.h"
-#include <gtest/gtest.h>
 
-TEST(StringCalculator,Add_emptyInputStringispassed_ZeroIsExpected){
-  //Arrange
-  string input = "";
-  int expectedValue=0;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
+class GetNegatives {
+private:
+	string negatives;
+
+public:
+	void operator()(int i) {
+		if (i < 0)
+			negatives.append(to_string(i) + ",");
+	}
+
+	operator string() {
+		if (negatives.length() > 0)
+			negatives.pop_back();
+
+		return negatives;
+	}
+};
+
+void check_for_negatives(const vector<int> &numbers) {
+	string negatives = for_each(numbers.begin(), numbers.end(), GetNegatives());
+
+	if (negatives.size() > 0) {
+		throw invalid_argument("Negatives not allowed: " + negatives);
+	}
 }
 
-TEST(StringCalculator,Add_zeroispassed_ZeroIsExpected){
-//arrange
-string input = "0";
-int expectedValue=0;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
+void add_if_valid(vector<int> &numbers, string number_string) {
+	int number = stoi(number_string);
+	if (number <= 1000)
+		numbers.push_back(number);
 }
 
-TEST(StringCalculator,oneispassed_oneIsExpected){
-//arrange
-string input = "1";
-int expectedValue=1;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
+vector<int> get_numbers(const string &input) {
+	regex numbers_only("(-?\\d+)+");
+
+	vector<int> numbers;
+	for_each(sregex_token_iterator(input.begin(), input.end(), numbers_only),
+				sregex_token_iterator(),
+				[&numbers](string s) { add_if_valid(numbers, s); });
+
+	return numbers;
 }
 
-TEST(StringCalculator,passedtwocommadelimednumbers){
-//arrange
-string input = "1,5";
-int expectedValue=6;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
+void Add(const string &input) {
+	if (input.empty())
+		return 0;
+
+	vector<int> numbers = get_numbers(input);
+
+	check_for_negatives(numbers);
+
+	cout<<accumulate(numbers.begin(), numbers.end(), 0);
 }
-
-TEST(StringCalculator,passedmultipledelimednumbers){
-//arrange
-string input = "1,5,2";
-int expectedValue=8;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
-}
-
-TEST(StringCalculator,whendelimedwithnewlineandcomma){
-//arrange
-string input = "4/n,7,8";
-int expectedValue=19;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
-}
-
-TEST(StringCalculator,whenpassedadelimed){
-//arrange
-string input = "4/n,//n,6;,8";
-int expectedValue=18;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
-}
-
-TEST(StringCalculator,whennegativenumbersarepassed){
-//arrange
-string input = "3,-4,-8,4";
-int expectedValue=7;
-  //Assert
-ASSERT_THROW(Add(input),invalid_argument);
-}
-
-TEST(StringCalculator,numbersaregreaterthan1000){
-//arrange
-string input = "3,111,1000,1003";
-int expectedValue=1114;
-  //Act
-  int actualValue=Add(input);
-  //Assert
-  ASSERT_EQ(actualValue,expectedValue);
-}
-
-
-
-
-
-
-
-
-
-
